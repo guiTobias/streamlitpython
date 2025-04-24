@@ -9,7 +9,6 @@ from langchain.prompts import ChatPromptTemplate
 
 from loaders import *
 
-grop_API_KEY = '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'
 
 TIPOS_ARQUIVOS_VALIDOS = []
 
@@ -24,7 +23,7 @@ for nome_arquivo in os.listdir("D:\OneDrive\Documents\Guilherme\python\ORACULO\A
         if nome_arquivo.lower().endswith(".pdf"):
             TIPOS_ARQUIVOS_VALIDOS.append(nome_arquivo)
 
-ORIGEM_ARQUIVOS = ['Local','Importar']
+ORIGEM_ARQUIVOS = ['Importar']
 
 def carrega_arquivos(tipo_arquivo, arquivo):
     if tipo_arquivo == 'Local':
@@ -105,13 +104,18 @@ def sidebar():
     tabs = st.tabs(['Procedimentos'])
     with tabs[0]:
         modelo = st.selectbox('Selecione o modelo', CONFIG_MODELOS['Groq']['modelos'])
+        api_key = st.text_input(
+            f'Adicione a api key',
+            value=st.session_state.get(f'api_key_Groq'))
+        st.session_state[f'api_key_Groq'] = api_key
         tipo_arquivo = st.selectbox('Selecione um Procedimento', ORIGEM_ARQUIVOS)
+        
         if tipo_arquivo == 'Local': 
             arquivo = st.selectbox('Selecione um Procedimento', TIPOS_ARQUIVOS_VALIDOS)
         else:
             arquivo = st.file_uploader('Faça o upload do arquivo pdf', type=['.pdf'])
     if st.button('Inicializar', use_container_width=True):
-        carrega_modelo('Groq', modelo, grop_API_KEY, arquivo, tipo_arquivo)
+        carrega_modelo('Groq', modelo, api_key, arquivo, tipo_arquivo)
     if st.button('Apagar Histórico de Conversa', use_container_width=True):
         st.session_state['memoria'] = MEMORIA
 
