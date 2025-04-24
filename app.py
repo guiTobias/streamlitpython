@@ -23,7 +23,7 @@ MEMORIA = ConversationBufferMemory()
 #         if nome_arquivo.lower().endswith(".pdf"):
 #             TIPOS_ARQUIVOS_VALIDOS.append(nome_arquivo)
 
-ORIGEM_ARQUIVOS = ['Local','Importar']
+ORIGEM_ARQUIVOS = ['Importar']
 
 def carrega_arquivos(tipo_arquivo, arquivo):
     if tipo_arquivo == 'Local':
