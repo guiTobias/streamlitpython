@@ -19,11 +19,11 @@ CONFIG_MODELOS = {'Groq':
 
 MEMORIA = ConversationBufferMemory()
 
-for nome_arquivo in os.listdir("D:\OneDrive\Documents\Guilherme\python\ORACULO\Arquivos PDF"):
-        if nome_arquivo.lower().endswith(".pdf"):
-            TIPOS_ARQUIVOS_VALIDOS.append(nome_arquivo)
+# for nome_arquivo in os.listdir("D:\OneDrive\Documents\Guilherme\python\ORACULO\Arquivos PDF"):
+#         if nome_arquivo.lower().endswith(".pdf"):
+#             TIPOS_ARQUIVOS_VALIDOS.append(nome_arquivo)
 
-ORIGEM_ARQUIVOS = ['Importar']
+ORIGEM_ARQUIVOS = ['Local','Importar']
 
 def carrega_arquivos(tipo_arquivo, arquivo):
     if tipo_arquivo == 'Local':
